@@ -87,7 +87,7 @@
                         function (user) {
                             if(user)
                             {
-                                model.error = "sorry, username already taken.";
+                                model.registerErrors.usernameTaken = "sorry, username already taken.";
                             }
                             else{
                                 var newUser={
