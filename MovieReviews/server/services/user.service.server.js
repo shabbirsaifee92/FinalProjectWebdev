@@ -67,18 +67,20 @@
             }));
 
         var googleConfig = {
-            clientID     : "425690137519-fc8lierptvbhfhj1oa4bqgbn159ectkr.apps.googleusercontent.com",
-            clientSecret : "EMtx7lnIFVE_oFkveJK4mY0x",
-            callbackURL  : "http://localhost:3200/google/callback"
+            // clientID     : "425690137519-fc8lierptvbhfhj1oa4bqgbn159ectkr.apps.googleusercontent.com",
+            // clientSecret : "EMtx7lnIFVE_oFkveJK4mY0x",
+            // callbackURL  : "http://localhost:3200/google/callback"
+            clientID     : process.env.GOOGLE_CLIENT_ID,
+            clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+            callbackURL  : process.env.GOOGLE_CALLBACK_URL
         };
         var facebookConfig = {
             // clientID     : "242625612892833",
             // clientSecret : "0c36a8f1fbe8ca589dfc83ca8dfd442e",
             // callbackURL  : "https://deb-shubham-webdev.herokuapp.com/auth/facebook/callback",
-            clientID     : "242625612892833",
-            clientSecret : "0c36a8f1fbe8ca589dfc83ca8dfd442e",
-            // callbackURL  : "https://deb-shubham-webdev.herokuapp.com/auth/facebook/callback",
-            callbackURL  : "http://localhost:3200/auth/facebook/callback",
+            clientID     : process.env.FACEBOOK_CLIENT_ID,
+            clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+            callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
             profileFields: ['id', 'displayName', 'email']
         };
 
