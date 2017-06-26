@@ -53,7 +53,7 @@
         app.delete('/api/project/deleteUserReviews/user/:userId',deleteUserReviews);
 
         app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-        app.get('/google/callback',
+        app.get('/auth/google/callback',
             passport.authenticate('google', {
                 successRedirect: '/',
                 failureRedirect: '/'
@@ -67,9 +67,9 @@
             }));
 
         var googleConfig = {
-            // clientID     : "425690137519-fc8lierptvbhfhj1oa4bqgbn159ectkr.apps.googleusercontent.com",
-            // clientSecret : "EMtx7lnIFVE_oFkveJK4mY0x",
-            // callbackURL  : "http://localhost:3200/google/callback"
+            // clientID     : "1068123510453-uravjvr4a895vmec8c4dpssj9m49b7qn.apps.googleusercontent.com",
+            // clientSecret : "TbvEW-FimdwlxOksz5cSyW9Y",
+            // callbackURL  : "https://wedevproject.herokuapp.com/auth/google/callback"
             clientID     : process.env.GOOGLE_CLIENT_ID,
             clientSecret : process.env.GOOGLE_CLIENT_SECRET,
             callbackURL  : process.env.GOOGLE_CALLBACK_URL
