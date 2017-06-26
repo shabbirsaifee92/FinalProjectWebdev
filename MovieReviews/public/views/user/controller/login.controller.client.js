@@ -94,7 +94,7 @@
                                     username:username,
                                     password: password,
                                     email:email,
-                                    role:'critic'
+                                    role:'user'
                                 };
                                 return UserService
                                     .register(newUser)
