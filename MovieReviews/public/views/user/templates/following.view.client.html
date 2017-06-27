@@ -25,9 +25,12 @@
                             <h1 class="profile-section-header">People you are following</h1>
                             <div class="row profile-sub-section" ng-repeat="following in model.user.following">
                                 <div class="col-xs-4 col-sm-3 profile ">
-                                    <object data="{{following.url}}" width=200 height=200>
-                                        <img src="../../../images/profile.png" alt="Just testing.">
-                                    </object>
+
+                                    <img id="avatar" style="height: 145px;width: 120px" class="image"
+                                         ng-src="{{following.url}}" onerror="this.src='../../../images/profile.jpg'">
+                                    <!--<object data="{{following.url}}" width=200 height=200>-->
+                                        <!--<img src="../../../images/profile.png" alt="Just testing.">-->
+                                    <!--</object>-->
                                 </div>
                                 <div class="col-xs-8 col-sm-9 ">
                                     <h3> {{following.username}} </h3>
