@@ -86,7 +86,7 @@
                         API_KEY = this.API_KEY = response.data;
                         var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
                         url += '?' + $.param({
-                                'api-key': NY_API_KEY,
+                                'api-key': API_KEY ,
                                 'query': query
                             });
                         return $http

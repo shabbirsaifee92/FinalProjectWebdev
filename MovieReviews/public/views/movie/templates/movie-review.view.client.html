@@ -143,7 +143,7 @@
                                     <!--<h5><span><a data-toggle="collapse" href="#demo2" target="_self" aria-expanded="false" aria-controls="demo2">See user reviews ></a></span></h5>-->
                                 <!--</div>-->
 
-                                <button type="button" class="btn unfollow-btn btn-info" data-toggle="collapse"
+                                <button ng-show="model.reviews.length>0" type="button" class="btn unfollow-btn btn-info" data-toggle="collapse"
                                         data-target="#demo2" style="margin-top:10px;margin-bottom: 10px">See All </button>
                                 <div id="demo2" class="collapse">
                                     <div ng-repeat="review in model.reviews" ng-hide="index == 0">
@@ -160,7 +160,7 @@
 
                     <h1>Cast</h1>
                     <h2>Cast overview:</h2>
-                    <button type="button" class="btn unfollow-btn  btn-info " data-toggle="collapse"
+                    <button ng-show="model.actors.length>0" type="button" class="btn unfollow-btn  btn-info " data-toggle="collapse"
                             data-target="#demo3" style="margin-top:10px;margin-bottom: 10px">Full cast</button>
 
                     <div id="demo3"  class="content collapse">
