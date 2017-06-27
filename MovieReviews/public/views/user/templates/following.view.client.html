@@ -24,6 +24,29 @@
                         <div class="profile-section row">
                             <h1 class="profile-section-header">People you are following</h1>
                             <div class="row profile-sub-section" ng-repeat="following in model.user.following">
+
+
+
+                                <div class="col-xs-12">
+                                    <div id="user-picture">
+                                        <img style="height: 145px;width: 120px" class="image"
+                                             ng-src="{{follower.url}}" onerror="this.src='../../../images/profile.jpg'">
+                                        <div>
+                                            <!--<label style="color:blue;cursor: pointer;" for="input">Edit</label>-->
+
+                                        </div>
+                                    </div>
+                                    <div class="user-details">
+                                        <h1>{{follower.username}}</h1>
+                                    </div>
+                                    <div ng-show="model.user._id">
+
+                                        <a class="btn unfollow-btn btn-danger"
+                                           ng-click="model.unfollow(following._id)">Unfollow</a>
+                                    </div>
+                                </div>
+
+
                                 <div class="col-xs-6 col-sm-3 profile ">
 
                                     <img  id="avatar" style="height: 145px;width: 120px"
