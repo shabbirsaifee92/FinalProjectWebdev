@@ -87,7 +87,7 @@ model.logout = logout;
                                         .then(function (movie) {
                                             movie.poster_path = poster_config_path + movie.poster_path;
                                             UserService
-                                                .addToWatchList(movie,user._id)
+                                                .addToWatchList(movie,isLoggedIn._id)
                                                 .then(function (response) {
                                                     model.watchListMovies.push(movieId);
                                                 });
