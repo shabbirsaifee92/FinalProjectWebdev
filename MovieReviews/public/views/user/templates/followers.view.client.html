@@ -24,7 +24,7 @@
                         <div class="profile-section row">
                             <h1 class="profile-section-header">Followers</h1>
                             <div class="row profile-sub-section" ng-repeat="follower in model.user.followers">
-                                <div class="col-xs-4 col-sm-3 profile ">
+                                <div class="col-xs-6 col-sm-3 profile ">
 
                                     <img id="avatar" style="height: 145px;width: 140px"
                                          ng-src="{{follower.url}}" onerror="this.src='../../../images/profile.jpg'">
@@ -33,7 +33,7 @@
                                         <!--<img src="../../../images/profile.png" alt="Just testing.">-->
                                     <!--</object>-->
                                 </div>
-                                <div class="col-xs-8 col-sm-9 ">
+                                <div class="col-xs-6 col-sm-9 ">
                                     <h3> {{follower.username}} </h3>
                                 </div>
 
