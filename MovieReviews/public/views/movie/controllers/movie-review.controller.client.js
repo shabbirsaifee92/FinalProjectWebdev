@@ -215,10 +215,11 @@ model.logout = logout;
                 $location.url('/login');
             }
             else {
-                if (rating === undefined && userreview === undefined) {
-                    model.error = "Please enter either a review or a rating";
+                if (rating === undefined || userreview === undefined) {
+                    model.error = "Please enter  a review and a rating";
                 }
                 else {
+                    model.error='';
                     MovieService
                         .getMovie(model.movieId)
                         .then(function (movie) {
@@ -253,7 +254,7 @@ model.logout = logout;
 
         function editReview(reviewId,rating,text) {
 
-            if(typeof rating==='undefined' || typeof text === 'undefined'){
+            if(typeof rating==='undefined' && typeof text === 'undefined'){
                 model.updateError='Enter rating or review';
                 return ;
             }
@@ -265,6 +266,7 @@ model.logout = logout;
             UserService
                 .editReview(reviewId, review)
                 .then(function (response) {
+                    model.selectedId = false;
                     UserService
                         .getAllReviews()
                         .then(function (reviews) {

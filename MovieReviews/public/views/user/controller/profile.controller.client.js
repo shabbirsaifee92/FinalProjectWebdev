@@ -82,7 +82,7 @@
             UserService
                 .updateUser(model.user._id,model.user)
                 .then(function (status) {
-                    model.updateSucces='Profile Updated';
+                    model.updateSuccess='Profile Updated';
                 })
         }
 
