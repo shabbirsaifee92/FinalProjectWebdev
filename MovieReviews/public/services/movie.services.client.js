@@ -5,8 +5,8 @@
             .factory('MovieService',MovieService);
 
         function MovieService($http) {
-            var API_KEY = "8b4a101400c25efdf094f6b9b8081675";
-            var NY_API_KEY = "7e11f0c2bed84265a72a1b17de947ab7";
+            var API_KEY = process.env.TMDB_API_KEY;
+            var NY_API_KEY = process.env.NY_API_KEY;
 
             var api = {
                 getConfig:getConfig,

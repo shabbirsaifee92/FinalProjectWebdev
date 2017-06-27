@@ -6,7 +6,7 @@
         this.getTopNews = getTopNews;
         this.getLatestReviews=getLatestReviews;
         this.getTalkingPoints=getTalkingPoints;
-        var API_KEY='d5457e48-805f-4353-aca6-32df568fab15';
+        var API_KEY= process.env.GUARDIANS_NEWS_API_KEY;
 
         function getTopNews() {
             var url ='https://content.guardianapis.com/search?&format=json&tag=film/film,tone/news&show-fields=trailText,byline,thumbnail,shortUrl&from-date=2017-06-01&&order-by=newest&api-key='+API_KEY;
