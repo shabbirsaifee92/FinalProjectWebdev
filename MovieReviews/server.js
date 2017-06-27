@@ -8,8 +8,8 @@ require('dotenv').config();
 
 app.use(cookieParser());
 app.use(session({
-    // secret: process.env.SESSION_SECRET,
-    secret: "secret",
+    secret: process.env.SESSION_SECRET,
+    // secret: "secret",
     resave:true,
     saveUninitialized: true
 }));
