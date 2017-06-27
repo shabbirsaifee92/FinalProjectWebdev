@@ -14,6 +14,7 @@
             model.likeMovie = likeMovie;
             model.unlikeMovie = unlikeMovie;
             model.searchMovie = searchMovie;
+            model.user = model.isLoggedIn = isLoggedIn;
 
             function searchMovie(query) {
                 $location.url('/movie/search/'+query);
