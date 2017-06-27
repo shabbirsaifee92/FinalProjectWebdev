@@ -896,9 +896,9 @@ select{
 .footer{
     margin-top: 10px;
 }
-.footer h3,h4{
-    color:white;
-}
+/*.footer h3,h4{*/
+    /*color:;*/
+/*}*/
 
 .fa-check:hover{
     text-decoration: none;
