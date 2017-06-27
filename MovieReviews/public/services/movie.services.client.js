@@ -65,7 +65,7 @@
 
             function getReviewsByMovieId(movieId) {
                 var API_KEY='';
-                var url = "/api/project/getNyKey";
+                var url = "/api/project/getTmdbKey";
                 return $http.get(url)
                     .then(function (response) {
                         API_KEY = this.API_KEY = response.data;
