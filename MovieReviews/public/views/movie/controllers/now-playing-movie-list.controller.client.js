@@ -43,23 +43,25 @@
                             });
                     });
 
-                UserService
-                    .getMoviesFromWatchList(isLoggedIn._id)
-                    .then(function (movies) {
-                        var movieIds = [];
-                        for(m in movies)
-                            movieIds.push(movies[m].id);
-                        model.watchListMovies = movieIds;
-                    });
+                if(isLoggedIn._id) {
+                    UserService
+                        .getMoviesFromWatchList(isLoggedIn._id)
+                        .then(function (movies) {
+                            var movieIds = [];
+                            for (m in movies)
+                                movieIds.push(movies[m].id);
+                            model.watchListMovies = movieIds;
+                        });
 
-                UserService
-                    .getLikedMovies(isLoggedIn._id)
-                    .then(function (movies) {
-                        var movieIds = [];
-                        for(m in movies)
-                            movieIds.push(movies[m].id);
-                        model.likedMovies = movieIds;
-                    })
+                    UserService
+                        .getLikedMovies(isLoggedIn._id)
+                        .then(function (movies) {
+                            var movieIds = [];
+                            for (m in movies)
+                                movieIds.push(movies[m].id);
+                            model.likedMovies = movieIds;
+                        })
+                }
             }
             init();
 

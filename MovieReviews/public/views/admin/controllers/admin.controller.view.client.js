@@ -153,9 +153,10 @@
                         };
                         model.username = "";
                         model.roles = "";
-                        model.firstname = "";
+                        model.firstName = "";
                         model.lastname = "";
-                        model.password = "";
+                        model.rpwd = "";
+                        model.rvpwd = "";
                         model.email="";
                         UserService
                             .createUser(user)

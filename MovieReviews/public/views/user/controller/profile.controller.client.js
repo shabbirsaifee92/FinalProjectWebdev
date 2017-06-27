@@ -73,17 +73,22 @@
                     $location.url('/');
                 });
         }
-        
-        
-        function deleteUser() {
-            
+
+        function deleteUser(user) {
+            UserService
+                .unregisterUser(user)
+                .then(function (response) {
+                    $location.url('/login');
+                },function (err) {
+                    console.log(err);
+                });
         }
         function updateUser() {
             UserService
                 .updateUser(model.user._id,model.user)
                 .then(function (status) {
                     model.updateSuccess='Profile Updated';
-                })
+                });
         }
 
         function deleteMovie(movieId) {
