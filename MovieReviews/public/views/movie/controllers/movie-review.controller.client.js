@@ -255,7 +255,7 @@ model.logout = logout;
         function editReview(reviewId,rating,text) {
 
             if(typeof rating==='undefined' && typeof text === 'undefined'){
-                model.updateError='Enter rating or review';
+                model.updateError='Enter rating and review';
                 return ;
             }
 
@@ -266,12 +266,15 @@ model.logout = logout;
             UserService
                 .editReview(reviewId, review)
                 .then(function (response) {
+                    for(var i in model.userreviews){
+                        if(reviewId === model.userreviews[i]._id){
+                            var index = i;
+                        }
+                    }
+                    model.userreviews[index].text= typeof review.text==='undefined' ? model.userreviews[index].text :review.text ;
+                    model.userreviews[index].rating=typeof review.rating==='undefined'? model.userreviews[index].rating :review.rating ;
+
                     model.selectedId = false;
-                    UserService
-                        .getAllReviews()
-                        .then(function (reviews) {
-                            model.userreviews = reviews;
-                        });
                 })
         }
 

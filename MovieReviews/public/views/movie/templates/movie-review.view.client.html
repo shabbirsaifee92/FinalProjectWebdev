@@ -501,9 +501,10 @@
                         <div ng-repeat="userreview in model.userreviews">
                             <h3 style="color:red" ng-show="model.updateError && model.selectedId === userreview._id">{{model.updateError}}</h3>
                             <div ng-show="userreview.movieId === model.movieId">
-                                <div ng-hide="model.selectedId === userreview._id">
+                                <div ng-hide="model.selectedId === userreview._id && model.selectedId">
+
                                     <div class="star-ratings-css">
-                                        <div class="star-ratings-css-top" ng-model="rating" ng-style="{'width':{{userreview.rating}}*(100/5)}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star-ratings-css-top" ng-model="rating" ng-style="{'width':userreview.rating*(100/5)}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                                         <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                                     </div>
                                     <!--"-->
@@ -515,10 +516,10 @@
                                     <a class="btn unfollow-btn btn-danger" ng-show="model.user.following.indexOf(userreview.userId)!== -1 && model.user._id!==userreview.userId"
                                        ng-click="model.unfollow(userreview.userId)">Unfollow</a>
                                     </div>
-                                    <button ng-show="userreview.userId === model.userId || model.user.role.indexOf('admin')>-1" ng-click="model.selectReview(userreview._id,userreview.text)" class="btn unfollow-btn btn-info">Edit</button>
-                                    <button ng-show="userreview.userId === model.userId || model.user.role.indexOf('admin')>-1" ng-click="model.deleteReview(userreview.userId,userreview._id)" class="btn unfollow-btn btn-danger ">Delete</button>
+                                    <a ng-show="userreview.userId === model.userId || model.user.role.indexOf('admin')>-1" ng-click="model.selectReview(userreview._id,userreview.text);editingId=userreview._id" class="btn unfollow-btn btn-info">Edit</a>
+                                    <a ng-show="userreview.userId === model.userId || model.user.role.indexOf('admin')>-1" ng-click="model.deleteReview(userreview.userId,userreview._id)" class="btn unfollow-btn btn-danger ">Delete</a>
                                 </div>
-                                <div ng-show="model.selectedId === userreview._id">
+                                <div ng-show="model.selectedId === userreview._id ">
                                     <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
                                     <div class="stars">
                                         <form action="">
@@ -526,26 +527,26 @@
                                             <label>Your Rating:</label>
                                             <br/>
 
-                                            <input ng-model="result2" class="star star-5" id="stars-{{$index}}5" type="radio" name="star2" ng-value="'5'"/>
+                                            <input ng-model="model.rating" class="star star-5" id="stars-{{$index}}5" type="radio" name="star2" ng-value="'5'"/>
                                             <label class="star star-5" for="stars-{{$index}}5"></label>
 
-                                            <input ng-model="result2" class="star star-4" id="stars-{{$index}}4" type="radio" name="star2" ng-value="'4'"/>
+                                            <input ng-model="model.rating" class="star star-4" id="stars-{{$index}}4" type="radio" name="star2" ng-value="'4'"/>
                                             <label class="star star-4" for="stars-{{$index}}4"></label>
 
-                                            <input ng-model="result2" class="star star-3" id="stars-{{$index}}3" type="radio" name="star2" ng-value="'3'"/>
+                                            <input ng-model="model.rating" class="star star-3" id="stars-{{$index}}3" type="radio" name="star2" ng-value="'3'"/>
                                             <label class="star star-3" for="stars-{{$index}}3"></label>
 
-                                            <input ng-model="result2" class="star star-2" id="stars-{{$index}}2" type="radio" name="star2" ng-value="'2'"/>
+                                            <input ng-model="model.rating" class="star star-2" id="stars-{{$index}}2" type="radio" name="star2" ng-value="'2'"/>
                                             <label class="star star-2" for="stars-{{$index}}2"></label>
 
-                                            <input ng-model="result2" class="star star-1" id="stars-{{$index}}1" type="radio" name="star2" ng-value="'1'"/>
+                                            <input ng-model="model.rating" class="star star-1" id="stars-{{$index}}1" type="radio" name="star2" ng-value="'1'"/>
                                             <label class="star star-1" for="stars-{{$index}}1"></label>
 
                                             <label for="review2">Your Review:</label>
                                             <textarea id="review2" class="form-control" rows="4" ng-model="model.text2" style="resize: vertical;"></textarea>
 
-                                            <button ng-click="model.editReview(userreview._id,result2,model.text2)" class="btn unfollow-btn btn-success">Update</button>
-                                            <button ng-click="model.cancel()" class="btn unfollow-btn btn-primary ">Cancel</button>
+                                            <a  ng-click="model.editReview(userreview._id,model.rating,model.text2)" class="btn unfollow-btn btn-success">Update</a>
+                                            <a ng-click="model.cancel()" class="btn unfollow-btn btn-primary ">Cancel</a>
                                         </form>
                                     </div>
                                 </div>
@@ -562,25 +563,25 @@
                             <label>Your Rating:</label>
                             <br/>
 
-                            <input ng-model="model.rating" class="star star-5" id="star-5" type="radio" name="star" ng-value="'5'"/>
+                            <input ng-model="model.rating2" class="star star-5" id="star-5" type="radio" name="star" ng-value="'5'"/>
                             <label class="star star-5" for="star-5"></label>
 
-                            <input ng-model="model.rating" class="star star-4" id="star-4" type="radio" name="star" ng-value="'4'"/>
+                            <input ng-model="model.rating2" class="star star-4" id="star-4" type="radio" name="star" ng-value="'4'"/>
                             <label class="star star-4" for="star-4"></label>
 
-                            <input ng-model="model.rating" class="star star-3" id="star-3" type="radio" name="star" ng-value="'3'"/>
+                            <input ng-model="model.rating2" class="star star-3" id="star-3" type="radio" name="star" ng-value="'3'"/>
                             <label class="star star-3" for="star-3"></label>
 
-                            <input ng-model="model.rating" class="star star-2" id="star-2" type="radio" name="star" ng-value="'2'"/>
+                            <input ng-model="model.rating2" class="star star-2" id="star-2" type="radio" name="star" ng-value="'2'"/>
                             <label class="star star-2" for="star-2"></label>
 
-                            <input ng-model="model.rating" class="star star-1" id="star-1" type="radio" name="star" ng-value="'1'"/>
+                            <input ng-model="model.rating2" class="star star-1" id="star-1" type="radio" name="star" ng-value="'1'"/>
                             <label class="star star-1" for="star-1"></label>
 
                             <label for="review">Your Review:</label>
                             <textarea id="review" class="form-control" rows="4" ng-model="model.userreview" style="resize: vertical;"></textarea>
 
-                            <button ng-click="model.submitReview(model.rating,model.userreview)" class="btn unfollow-btn btn-primary form-control">Submit</button>
+                            <a ng-click="model.submitReview(model.rating2,model.userreview)" class="btn unfollow-btn btn-primary form-control">Submit</a>
                         </form>
                     </div>
 			</div>
