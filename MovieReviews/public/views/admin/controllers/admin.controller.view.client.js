@@ -21,6 +21,7 @@
         model.unfollow=unfollow;
         model.findUserById = findUserById;
         model.logout=logout;
+        model.checkPassword = checkPassword;
 
         function init() {
             //    get all users
@@ -127,7 +128,12 @@
                 });
         }
         
-        function register(username,roles,firstname,lastname,email) {
+        function register(username,roles,firstname,lastname,email,password,verifyPassword) {
+
+            if(password!==verifyPassword ){
+                model.pwdMismatch="Password doesnot match";
+                return;
+            }
 
             UserService
                 .findUserByUsername(username)
@@ -142,7 +148,7 @@
                             role:roles,
                             firstName:firstname,
                             lastName:lastname,
-                            password:"user",
+                            password:password,
                             email:email
                         };
                         model.username = "";
@@ -159,6 +165,12 @@
                             });
                     }
                 });
+        }
+
+        function checkPassword() {
+            if(model.rvpwd === model.rpwd){
+                model.pwdMismatch='';
+            }
         }
 
         function getAllUsers() {

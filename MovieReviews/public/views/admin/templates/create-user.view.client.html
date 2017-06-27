@@ -56,7 +56,19 @@
                         <input ng-model="model.lastName" id="txtLastname" class="form-control" type="text" placeholder="Last Name">
                     </div>
 
-                    <a class="btn btn-info btn-block" ng-click="personalInfo.$valid &&  model.register(model.username,model.attribute,model.firstName,model.lastName,model.email)">Update Info</a>
+                    <div class="form-group">
+                        <input type="password" name="password" ng-model="model.rpwd" id="password" tabindex="2" class="form-control" placeholder="Password" required/>
+                        <div ng-show="registerForm.password.$error.required && registerForm.password.$dirty"><h6 class="warning-text">Required</h6></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" ng-change="model.checkPassword()" name="confirm-password" ng-model="model.rvpwd" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required/>
+                        <div ng-show="registerForm.confirm-password.$error.required && registerForm.confirm-password.$dirty"><h6 class="warning-text">Required</h6></div>
+                        <div ng-show="model.pwdMismatch"><h6 class="warning-text">Password Doesnot Match</h6></div>
+                    </div>
+
+                    <a class="btn btn-info btn-block" ng-click="personalInfo.$valid &&  model.register(model.username,model.attribute,model.firstName,
+                                                                                                    model.lastName,model.email,model.rpwd,model.rvpwd)">Update Info</a>
 
 
 

@@ -9,6 +9,8 @@
         var FacebookStrategy = require('passport-facebook').Strategy;
         var multer = require('multer'); // npm install multer --save
         var upload = multer({ dest: __dirname+'/../../public/uploads/user-profile-pictures'});
+
+
 //---------------------------------------------------
         passport.serializeUser(serializeUser);
         passport.deserializeUser(deserializeUser);
