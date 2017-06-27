@@ -24,31 +24,31 @@
 
                 <div class="content">
 
-                    <div class="page-section sorter ">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-12">
-                                Sort By:
-                                <select ng-model="model.attribute"  name="attr" >
-                                    <option ng-selected="model.attribute == ''" value=''>Select</option>
-                                    <option ng-selected="model.attribute == 'popularity'" value='popularity'>Popularity</option>
-                                    <option ng-selected="model.attribute == 'release_date'" value='release_date'>Recently Released</option>
-                                    <option ng-selected="model.attribute == 'revenue'" value='revenue'>Revenue</option>
-                                    <option value="vote_average">Average Rating</option>
-                                </select>
+                    <!--<div class="page-section sorter ">-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-6 col-sm-12">-->
+                                <!--Sort By:-->
+                                <!--<select ng-model="model.attribute"  name="attr" >-->
+                                    <!--<option ng-selected="model.attribute == ''" value=''>Select</option>-->
+                                    <!--<option ng-selected="model.attribute == 'popularity'" value='popularity'>Popularity</option>-->
+                                    <!--<option ng-selected="model.attribute == 'release_date'" value='release_date'>Recently Released</option>-->
+                                    <!--<option ng-selected="model.attribute == 'revenue'" value='revenue'>Revenue</option>-->
+                                    <!--<option value="vote_average">Average Rating</option>-->
+                                <!--</select>-->
 
-                                OrderBy
+                                <!--OrderBy-->
 
-                                <select ng-model="model.order" name="sort" >
-                                    <option value="" selected="selected">Select</option>
-                                    <option value="asc">Ascending</option>
-                                    <option value="desc">Descending</option>
-                                </select>
-                                <button class="btn unfollow-btn btn-info " ng-click="model.search(model.attribute,model.order)">
-                                    Search
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                                <!--<select ng-model="model.order" name="sort" >-->
+                                    <!--<option value="" selected="selected">Select</option>-->
+                                    <!--<option value="asc">Ascending</option>-->
+                                    <!--<option value="desc">Descending</option>-->
+                                <!--</select>-->
+                                <!--<button class="btn unfollow-btn btn-info " ng-click="model.search(model.attribute,model.order)">-->
+                                    <!--Search-->
+                                <!--</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <div class="page-section hidden-xs">
                         <div class="row  sorter ">
