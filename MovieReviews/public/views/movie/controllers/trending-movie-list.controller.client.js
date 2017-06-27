@@ -72,7 +72,7 @@
                                             UserService
                                                 .addToWatchList(movie,user._id)
                                                 .then(function (response) {
-                                                    $route.reload();
+                                                    model.watchListMovies.push(movieId);
                                                 });
                                         });
                                 });
@@ -91,7 +91,10 @@
                             UserService
                                 .deleteMovie(movieId,isLoggedIn._id)
                                 .then(function (response) {
-                                    $route.reload();
+                                    for(m in model.watchListMovies) {
+                                        if(model.watchListMovies[m] === movieId)
+                                            model.watchListMovies.splice(m, 1);
+                                    }
                                 })
                         }
                     });
@@ -118,7 +121,7 @@
                                             UserService
                                                 .likeMovie(movie, isLoggedIn._id)
                                                 .then(function (response) {
-                                                    $route.reload();
+                                                    model.likedMovies.push(movieId);
                                                 });
                                         });
                                 });
@@ -130,7 +133,10 @@
                 UserService
                     .unlikeMovie(movieId,isLoggedIn._id)
                     .then(function (response) {
-                        $route.reload();
+                        for(m in model.likedMovies) {
+                            if(model.likedMovies[m] === movieId)
+                                model.likedMovies.splice(m, 1);
+                        }
                     })
             }
 

@@ -46,7 +46,7 @@
         };
 
             return api;
-
+            
             function getMoviesBySorting(sortBy,order) {
                 var API_KEY='';
                 var url = "/api/project/getTmdbKey";

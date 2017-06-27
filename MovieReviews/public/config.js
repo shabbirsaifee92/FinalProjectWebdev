@@ -23,12 +23,6 @@
                  controllerAs:'model',
                  resolve: { isLoggedIn: checkLoggedIn }
              })
-             .when('/search/notFound',{
-                 templateUrl: 'views/common/templates/no-results.view.client.html',
-                 controller:'homeCtrl',
-                 controllerAs:'model',
-                 resolve: { isLoggedIn: checkLoggedIn }
-             })
              .when('/movie/search/:query',{
                  templateUrl:'views/movie/templates/movie-search-list.view.client.html',
                  controller:'movieSearchCtrl',

@@ -105,12 +105,22 @@
                 .unlikeMovie(movieId,model.userId)
                 .then(function (response) {
                     // console.log(response);
-                    UserService
-                        .getLikedMovies(model.userId)
-                        .then(function (movies) {
-                            if(movies.length>0)
-                                model.movies = movies;
-                        });
+                    for(var i in model.likedmovies){
+                        var movie = model.likedmovies[i];
+                        if(movieId === movie.id){
+                                model.likedmovies.splice(i,1);
+                        }
+                    }
+
+
+
+
+                    // UserService
+                    //     .getLikedMovies(model.userId)
+                    //     .then(function (movies) {
+                    //         if(movies.length>0)
+                    //             model.movies = movies;
+                    //     });
                     // $location.url('/user/watchlist');
                 });
         }

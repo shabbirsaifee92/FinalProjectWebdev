@@ -33,8 +33,9 @@ model.logout = logout;
                     .getMovieIdBySearch(model.query)
                     .then(function (response) {
                         if(response.total_results <= 0)
-                            $location.url('/search/notFound');
+                            model.search = false;
                         else {
+                            model.search = true;
                             MovieService
                                 .getConfig()
                                 .then(function (configs) {
@@ -87,7 +88,7 @@ model.logout = logout;
                                             UserService
                                                 .addToWatchList(movie,user._id)
                                                 .then(function (response) {
-                                                    $route.reload();
+                                                    model.watchListMovies.push(movieId);
                                                 });
                                         });
                                 });
@@ -106,7 +107,10 @@ model.logout = logout;
                             UserService
                                 .deleteMovie(movieId,isLoggedIn._id)
                                 .then(function (response) {
-                                    $route.reload();
+                                    for(m in model.watchListMovies) {
+                                        if(model.watchListMovies[m] === movieId)
+                                            model.watchListMovies.splice(m, 1);
+                                    }
                                 })
                         }
                     });
@@ -133,7 +137,7 @@ model.logout = logout;
                                             UserService
                                                 .likeMovie(movie, isLoggedIn._id)
                                                 .then(function (response) {
-                                                    $route.reload();
+                                                    model.likedMovies.push(movieId);
                                                 });
                                         });
                                 });
@@ -145,7 +149,12 @@ model.logout = logout;
                 UserService
                     .unlikeMovie(movieId,isLoggedIn._id)
                     .then(function (response) {
-                        $route.reload();
+                        for(m in model.likedMovies){
+                            movie = model.likedMovies[m];
+                            if(movie === movieId){
+                                model.likedMovies.splice(m,1);
+                            }
+                        }
                     })
             }
 
