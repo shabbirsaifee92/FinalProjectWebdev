@@ -74,7 +74,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <strong>Directors:</strong>
-                                <span ng-repeat="director in model.directors">
+                                <span ng-repeat="director in model.directors track by $index">
                                 {{director}}<span ng-show=" ! $last ">,</span>
                                 </span>
                             </div>
@@ -84,7 +84,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <strong>Actors:</strong>
-                                <span ng-repeat="actor in model.actors">
+                                <span ng-repeat="actor in model.actors track by $index">
                                 {{actor.name}}<span ng-show=" ! $last ">,</span>
                                 </span>
                             </div>
@@ -94,7 +94,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <strong>Writers:</strong>
-                                <span ng-repeat="writer in model.writers">
+                                <span ng-repeat="writer in model.writers track by $index">
                                 {{writer}}<span ng-show=" ! $last ">,</span>
                                 </span>
                             </div>
@@ -175,7 +175,7 @@
                         </div>
 
                         <div class="row" style="border: 3px solid slategray">
-                                <div style="margin-top: 5px " ng-repeat="actor in model.actors" class="col-xs-12">
+                                <div style="margin-top: 5px " ng-repeat="actor in model.actors track by $index" class="col-xs-12">
                                     <div class="col-sm-2 hidden-xs">
                                         <span>{{actor.order+1}}</span>
                                     </div>
