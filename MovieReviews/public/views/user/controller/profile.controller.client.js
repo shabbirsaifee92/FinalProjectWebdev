@@ -24,6 +24,11 @@
         model.checkPassword=checkPassword;
         model.changePassword=changePassword;
         model.searchMovie = searchMovie;
+        model.editReview = editReview;
+        model.deleteReview = deleteReview;
+        model.submitReview = submitReview;
+        model.cancel = cancel;
+        model.selectReview = selectReview;
 
         function init() {
             model.userId = isLoggedIn._id;
@@ -191,5 +196,79 @@
                 });
         }
 
+        function submitReview(rating,userreview) {
+
+            if (!model.user._id) {
+                $location.url('/login');
+            }
+            else {
+                if (rating === undefined || userreview === undefined) {
+                    model.error = "Please enter  a review and a rating";
+                }
+                else {
+                    model.error='';
+                    MovieService
+                        .getMovie(model.movieId)
+                        .then(function (movie) {
+                            UserService
+                                .submitReview(isLoggedIn._id, model.movieId, rating,
+                                    userreview, isLoggedIn.username,movie.title)
+                                .then(function (response) {
+                                    model.rating2 = "";
+                                    model.userreview = "";
+                                    UserService
+                                        .getUserReviews(userId)
+                                        .then(function (reviews) {
+                                            model.userreviews = reviews;
+                                        });
+                                }, function (err) {
+                                    console.log(err);
+                                });
+                        });
+                }
+            }
+        }
+
+
+        function cancel() {
+            model.selectedId = false;
+        }
+
+        function selectReview(reveiewId,text) {
+            model.selectedId = reveiewId;
+            model.text2 = text;
+        }
+
+
+        function editReview(reviewId,rating,text) {
+            var review = {
+                rating:rating,
+                text:text
+            };
+            UserService
+                .editReview(reviewId, review)
+                .then(function (response) {
+                    for(m in model.userreviews){
+                        if(model.userreviews[m]._id === reviewId){
+                            model.userreviews[m].text= typeof review.text==='undefined' ? model.userreviews[m].text :text ;
+                            model.userreviews[m].rating=typeof review.rating==='undefined'?model.userreviews[m].rating :rating ;
+                            break;
+                        }
+                    }
+                    model.selectedId = false;
+                })
+        }
+
+        function deleteReview(userId,reviewId) {
+            UserService
+                .deleteReview(userId,reviewId)
+                .then(function (response) {
+                    UserService
+                        .getUserReviews(userId)
+                        .then(function (reviews) {
+                            model.userreviews = reviews;
+                        });
+                })
+        }
     }
 })();

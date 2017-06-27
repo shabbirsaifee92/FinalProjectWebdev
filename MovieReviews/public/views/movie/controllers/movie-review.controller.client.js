@@ -227,7 +227,7 @@ model.logout = logout;
                                 .submitReview(isLoggedIn._id, model.movieId, rating,
                                                 userreview, isLoggedIn.username,movie.title)
                                 .then(function (response) {
-                                    model.rating = "";
+                                    model.rating2 = "";
                                     model.userreview = "";
                                     UserService
                                         .getAllReviews()
