@@ -4,6 +4,8 @@ var session      = require('express-session');
 var passport = require('passport');
 var bodyParser = require('body-parser');
 
+require('dotenv').config();
+
 app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET,
