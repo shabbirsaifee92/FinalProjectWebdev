@@ -24,22 +24,22 @@
                         <div class="profile-section row">
                             <h1 class="profile-section-header">People you are following</h1>
                             <div class="row profile-sub-section" ng-repeat="following in model.user.following">
-                                <!--<div class="col-xs-6 col-sm-3 profile ">-->
+                                <div class="col-xs-6 col-sm-3 profile ">
 
                                     <img  id="avatar" style="height: 145px;width: 120px"
                                          ng-src="{{following.url}}" onerror="this.src='../../../images/profile.jpg'">
                                     <!--<object data="{{following.url}}" width=200 height=200>-->
                                         <!--<img src="../../../images/profile.png" alt="Just testing.">-->
                                     <!--</object>-->
-                                <!--</div>-->
-                                <!--<div class="col-xs-6 col-sm-9 ">-->
-                                    <h3> {{following.username}} </h3>
+
+
+                                   <h3> {{following.username}} </h3>
                                     <div ng-show="model.user._id">
 
                                         <a class="btn unfollow-btn btn-danger"
                                            ng-click="model.unfollow(following._id)">Unfollow</a>
                                     </div>
-                                <!--</div>-->
+                                </div>
 
                             </div>
                             <div ng-hide="model.user.following.length!==0">
