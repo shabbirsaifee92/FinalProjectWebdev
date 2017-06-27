@@ -107,7 +107,9 @@
                     <div class="content">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="row" ng-repeat="review in model.crticreviews">
+                                <button ng-show="model.crticreviews.length>0" type="button" class="btn unfollow-btn btn-info" data-toggle="collapse"
+                                        data-target="#demo7" style="margin-top:10px;margin-bottom: 10px">See All </button>
+                                <div id="demo7" class="row" ng-repeat="review in model.crticreviews">
 
                                     <div class="col-sm-5">
                                         <img width="100%" height="auto" alt='No Image Found'
@@ -134,7 +136,7 @@
                     <h1>User Reviews</h1>
                     <div class="content">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div ng-show="model.reviews.length>0"  class="col-md-12">
 
                                 Reviewed By :<strong style="color: #003eff">{{model.reviews[0].author}}</strong>
                                 <p style="word-wrap: break-word">{{model.reviews[0].content}}</p>
