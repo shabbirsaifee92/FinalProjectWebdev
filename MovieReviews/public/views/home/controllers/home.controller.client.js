@@ -46,15 +46,17 @@
                             getTrendingMovieMovieInfo(response,poster_config_path);
                         });
                 });
+           if(isLoggedIn._id){
+               UserService
+                   .getMoviesFromWatchList(isLoggedIn._id)
+                   .then(function (movies) {
+                       var movieIds = [];
+                       for(m in movies)
+                           movieIds.push(movies[m].id);
+                       model.watchListMovies = movieIds;
+                   });
+           }
 
-            UserService
-                .getMoviesFromWatchList(isLoggedIn._id)
-                .then(function (movies) {
-                    var movieIds = [];
-                    for(m in movies)
-                        movieIds.push(movies[m].id);
-                    model.watchListMovies = movieIds;
-                });
             MovieService
                 .getPopularMovies()
                 .then(function (popularmovies) {
