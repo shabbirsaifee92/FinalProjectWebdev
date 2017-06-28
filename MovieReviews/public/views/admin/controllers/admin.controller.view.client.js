@@ -47,6 +47,7 @@
                     .getFollowings(model.registereduser)
                     .then(function (following) {
                         if(following.length>0){
+
                             return  model.editUser.following=following;
                         }
 
