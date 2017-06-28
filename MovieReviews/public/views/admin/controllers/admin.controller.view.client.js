@@ -22,6 +22,7 @@
         model.findUserById = findUserById;
         model.logout=logout;
         model.checkPassword = checkPassword;
+        model.curUrl = $location.path();
 
         function init() {
             //    get all users
