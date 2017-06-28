@@ -48,7 +48,7 @@
                     .then(function (following) {
                         if(following.length>0){
 
-                            return  model.editUser.following=following;
+                              model.editUser.following=following;
                         }
 
                     });
@@ -63,7 +63,7 @@
                     .getFollowers(model.registereduser)
                     .then(function (followers) {
                         if(followers.length>0){
-                            return  model.editUser.followers=followers;
+                              model.editUser.followers=followers;
                         }
 
                     });
