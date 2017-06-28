@@ -208,7 +208,7 @@
                                 </div>
                             </div>
                             <div class="collapse" id="followingList">
-                                {{model.editUser.following}}
+                                <!--{{model.editUser.following}}-->
                                 <div class="row profile-sub-section" ng-repeat="following in model.editUser.following">
 
 
@@ -247,7 +247,7 @@
 
                                 </div>
                             </div>
-                            <div ng-hide="model.ediUser.following.length!==0">
+                            <div ng-hide="model.ediUser.following.length!==0 || model.editUser.following">
                                 <p>User don't have any followers.</p>
                             </div>
                     </div>
