@@ -58,10 +58,13 @@
 
                         <div class="profile-section">
                             <h1 class="profile-section-header">Your Likes</h1>
-                            <div class="see-more" ng-show="model.likedmovies">
+                            <div ng-show="model.likedmovies.length>0">
+                                <p>You have liked {{model.likedmovies.length}} movies</p>
+                            </div>
+                            <div class="see-more" ng-show="model.likedmovies.length>0">
                                 <h5><span><a href="#!/user/likedmovies">See all >></a></span></h5>
                             </div>
-                            <div ng-hide="model.likedmovies">
+                            <div ng-hide="model.likedmovies.length>0">
                                 <p>Like a movie to see your movie preferences!!!</p>
                             </div>
                         </div>

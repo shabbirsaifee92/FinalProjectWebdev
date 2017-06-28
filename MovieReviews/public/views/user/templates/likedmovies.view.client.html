@@ -23,7 +23,7 @@
                     <div class="col-sm-8">
                         <div class="profile-section row">
                             <h1 class="profile-section-header">Your Likes</h1>
-                            <div class="row subsection" ng-hide="model.likedmovies.length>0" ng-repeat="movie in model.likedmovies">
+                            <div class="row subsection" ng-repeat="movie in model.likedmovies">
                                 <div class="col-sm-4 hidden-xs">
                                     <img src="{{movie.poster_path}}"/>
                                 </div>
@@ -45,7 +45,7 @@
 
 
                             </div>
-                            <div ng-show="model.likedmovies.length<=0">
+                            <div ng-hide="model.likedmovies.length>0">
                                 <h1 style="text-align: center" > Your likes are currently empty</h1>
                                 <div style="align-content: center"><span class=""></span></div>
                                 <h3 style="text-align: center"> <a href="#/home">Explore</a> to get started</h3>
