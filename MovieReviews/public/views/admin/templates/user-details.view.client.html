@@ -72,13 +72,10 @@
 
                         <div class="profile-section row">
                             <h1 class="profile-section-header">Watchlist</h1>
-
-
-                            <div  ng-show="model.movies">
                                 <div ng-show="model.movies.length>0" class="see-more">
                                     <h5><span><a ng-click="model.expandWatchlist()" data-toggle="collapse" href="#watchlist" target="_self" aria-expanded="false" aria-controls="watchlist">See all ></a></span></h5>
                                 </div>
-                            </div>
+
                             <div class="collapse" id="watchlist" >
                                 <div class="subsection" ng-repeat="movie in model.movies">
                                     <div class=" row " >
