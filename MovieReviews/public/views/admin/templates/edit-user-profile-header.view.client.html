@@ -15,7 +15,7 @@
             <form action="/api/project/uploadProfileImage"   method="post" enctype="multipart/form-data">
                 <input  id="profilePic" style="display: none" name="myFile" ng-model="model.myFile"    type="file" class="form-control" onchange="form.submit()"/>
                 <input  name="userId"    value="{{model.editUser._id}}"   style="display: none"/>
-                <input name="callbackUrl" value="/#!{{model.editUser}}" style="display: none">
+                <input name="callbackUrl" value="/#!{{model.curUrl}}" style="display: none">
 
             </form>
 
