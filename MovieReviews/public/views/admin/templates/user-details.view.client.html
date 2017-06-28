@@ -167,11 +167,11 @@
                         <div class="profile-section row">
                             <h1 class="profile-section-header">Likes</h1>
 
-                            <div class="see-more" ng-hide="model.likedmovies.length<=0">
+                            <div class="see-more" ng-show="model.likedmovies.length>0">
                                 <h5><span><a data-toggle="collapse" href="#likedMovieList" target="_self" aria-expanded="false" aria-controls="reviewList">See all ></a></span></h5>
                             </div>
 
-                         <div class="collapse" id="likedMovieList">
+                             <div class="collapse" id="likedMovieList">
                              <div class="row subsection" ng-repeat="movie in model.likedmovies">
                                 <div class="col-sm-4 hidden-xs">
                                     <img src="{{movie.poster_path}}"/>
@@ -195,10 +195,8 @@
 
                             </div>
                          </div>
-                            <div ng-show="model.likedmovies.length<=0">
-                                <h1 style="text-align: center" > Your likes are currently empty</h1>
-                                <div style="align-content: center"><span class=""></span></div>
-                                <h3 style="text-align: center"> <a href="#/home">Explore</a> to get started</h3>
+                            <div ng-hide="model.likedmovies.length>0">
+                                <p>No likes.</p>
                             </div>
                         </div>
 
