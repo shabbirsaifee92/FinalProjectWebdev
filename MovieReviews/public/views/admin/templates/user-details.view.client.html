@@ -159,13 +159,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-
-                        <div ng-hide="model.userreviews.length<=0">
-                            <h1 style="text-align: center" > Your have not posted any review</h1>
-                            <div style="align-content: center"><span class=""></span></div>
-                            <h3 style="text-align: center"> Share your opinion</h3>
+                            <div ng-hide="model.userreviews.length>0">
+                                <p>No reviews posted.</p>
+                            </div>
                         </div>
 
                         <div class="profile-section row">
