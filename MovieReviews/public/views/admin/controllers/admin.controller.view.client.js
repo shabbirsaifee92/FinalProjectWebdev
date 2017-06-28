@@ -112,7 +112,7 @@
                 .then(function (response) {
                     for(m in model.movies) {
                         var movie = model.movies[m];
-                        if (movie._id === movieId) {
+                        if (movie.id === movieId) {
                             return model.movies.splice(m, 1);
                         }
                     }
@@ -126,7 +126,7 @@
                 .then(function (response) {
                     for(m in model.likedmovies){
                         var movie  = model.likedmovies[m];
-                        if(movie._id === movieId){
+                        if(movie.id === movieId){
                             return model.likedmovies.splice(m,1);
                         }
                     }
