@@ -30,6 +30,13 @@
             getAllReviews();
 
             if(model.registereduser){
+
+                UserService
+                    .findUserById(model.registereduser)
+                    .then(function (user) {
+                        model.editUser = user;
+                    });
+
                 UserService
                     .getUserReviews(model.registereduser)
                     .then(function (userreviews) {
@@ -53,11 +60,7 @@
 
                     });
 
-                UserService
-                    .findUserById(model.registereduser)
-                    .then(function (user) {
-                        model.editUser = user;
-                    });
+
 
                 UserService
                     .getFollowers(model.registereduser)
@@ -75,12 +78,7 @@
                             model.movies = movies;
                     });
 
-                UserService
-                    .getLikedMovies(model.registereduser)
-                    .then(function (likedmovies) {
-                        if(likedmovies.length>0)
-                            model.likedmovies = likedmovies;
-                    });
+               
             }
 
 
