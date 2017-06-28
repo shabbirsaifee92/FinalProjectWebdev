@@ -46,11 +46,11 @@
 
                         <div ng-if="model.user.role!=='user'" class="profile-section">
                             <h1 class="profile-section-header">You Reviews </h1>
-                            <div ng-hide="model.userreviews"><p>You have posted {{model.userreviews.length}}</p></div>
-                            <div class="see-more" ng-show="model.movies">
+                            <div ng-show="model.userreviews"><p>You have posted {{model.userreviews.length}} reviews</p></div>
+                            <div class="see-more" ng-show="model.userreviews.length>0">
                                 <h5><span><a href="#!/user/user_reviews">See all >></a></span></h5>
                             </div>
-                            <div ng-hide="model.userreviews">
+                            <div ng-hide="model.userreviews.length>0">
                                 <p>Loved or hated a movie? Write a review and share it with others!</p>
                             </div>
 
@@ -66,9 +66,9 @@
                             </div>
                         </div>
 
-                         <div ng-show="model.user.role != 'user' && model.user.followers.length>0" class="profile profile-section">
+                         <div ng-show="model.user.role !== 'user'" class="profile profile-section">
                             <h1 class="profile-section-header">Your Followers</h1>
-                             <div class="row image-list">
+                             <div ng-show="model.user.followers.length>0" class="row image-list">
 
                                      <div ng-repeat="follower in model.user.followers|limitTo:3" class="col-sm-4 col-xs-12">
 
@@ -82,14 +82,14 @@
 
                                      </div>
                              </div>
-                             <div class="see-more" ng-show="model.user.followers">
+                             <div class="see-more" ng-show="model.user.followers.length>0">
                                  <h5><span><a href="#!/user/followers">See all >></a></span></h5>
                              </div>
 
 
 
                              <div ng-show="model.user.followers.length<=0">
-                                 <p>Currently tou don't have any followers.</p>
+                                 <p>Currently you don't have any followers.</p>
                              </div>
                         </div>
 
