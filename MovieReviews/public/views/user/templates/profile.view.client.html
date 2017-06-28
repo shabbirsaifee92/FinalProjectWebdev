@@ -44,7 +44,7 @@
 
                         </div>
 
-                        <div ng-if="model.user.role!-='user'" class="profile-section">
+                        <div ng-if="model.user.role!=='user'" class="profile-section">
                             <h1 class="profile-section-header">You Reviews </h1>
                             <div ng-hide="model.userreviews"><p>You have posted {{model.userreviews.length}}</p></div>
                             <div class="see-more" ng-show="model.movies">
@@ -113,7 +113,7 @@
 
 
                             <div ng-hide="model.user.following.length!==0">
-                                <p>Currently tou don't have any followers.</p>
+                                <p>Currently You don't have any followers.</p>
                             </div>
                         </div>
                     </div>
