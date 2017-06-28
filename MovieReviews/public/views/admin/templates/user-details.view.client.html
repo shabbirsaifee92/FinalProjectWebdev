@@ -191,19 +191,40 @@
                             </div>
                             <div class="collapse" id="followingList">
                                 <div class="row profile-sub-section" ng-repeat="following in model.editUser.following">
-                                    <div class="col-xs-4 col-sm-3 profile ">
-                                        <object data="{{following.url}}" width=200 height=200>
-                                            <img src="../../../images/profile.png" alt="Just testing.">
-                                        </object>
-                                    </div>
-                                    <div class="col-xs-8 col-sm-9 ">
-                                        <h3> {{following.username}} </h3>
-                                        <div ng-show="model.user._id">
+
+
+                                    <div class="col-xs-12">
+                                        <div id="user-picture">
+                                            <img style="height: 145px;width: 120px" class="image"
+                                                 ng-src="{{following.url}}" onerror="this.src='../../../images/profile.jpg'">
+                                            <div>
+                                                <!--<label style="color:blue;cursor: pointer;" for="input">Edit</label>-->
+
+                                            </div>
+                                        </div>
+                                        <div class="user-details">
+                                            <h1>{{following.username}}</h1>
+                                        </div>
+                                        <div ng-show="model.user._id "style=" margin-left: 10px;">
 
                                             <a class="btn unfollow-btn btn-danger"
                                                ng-click="model.unfollow(following._id)">Unfollow</a>
                                         </div>
                                     </div>
+
+                                    <!--<div class="col-xs-4 col-sm-3 profile ">-->
+                                        <!--<object data="{{following.url}}" width=200 height=200>-->
+                                            <!--<img src="../../../images/profile.png" alt="Just testing.">-->
+                                        <!--</object>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-8 col-sm-9 ">-->
+                                        <!--<h3> {{following.username}} </h3>-->
+                                        <!--<div ng-show="model.user._id">-->
+
+                                            <!--<a class="btn unfollow-btn btn-danger"-->
+                                               <!--ng-click="model.unfollow(following._id)">Unfollow</a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
 
                                 </div>
                             </div>

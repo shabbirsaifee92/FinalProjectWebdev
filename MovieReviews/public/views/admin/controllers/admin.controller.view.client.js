@@ -46,7 +46,10 @@
                 UserService
                     .getFollowings(model.registereduser)
                     .then(function (following) {
-                        return  model.editUser.following=following;
+                        if(following.length>0){
+                            return  model.editUser.following=following;
+                        }
+
                     });
 
                 UserService
@@ -58,7 +61,10 @@
                 UserService
                     .getFollowers(model.registereduser)
                     .then(function (followers) {
-                        return  model.editUser.followers=followers;
+                        if(followers.length>0){
+                            return  model.editUser.followers=followers;
+                        }
+
                     });
 
                 UserService
@@ -159,6 +165,7 @@
                         model.rpwd = "";
                         model.rvpwd = "";
                         model.email="";
+                        model.attribute="user";
                         UserService
                             .createUser(user)
                             .then(function () {
