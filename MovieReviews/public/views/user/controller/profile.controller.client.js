@@ -100,12 +100,12 @@
             UserService
                 .deleteMovie(movieId,model.userId)
                 .then(function (response) {
-                    UserService
-                        .getMoviesFromWatchList(model.userId)
-                        .then(function (movies) {
-                            if(movies.length>0)
-                                model.movies = movies;
-                        });
+                    for(var i in model.movies){
+                        var movie = model.movies[i];
+                        if(movieId === movie.id){
+                            return model.movies.splice(i,1);
+                        }
+                    }
                     // $location.url('/user/watchlist');
                 });
         }
@@ -118,7 +118,7 @@
                     for(var i in model.likedmovies){
                         var movie = model.likedmovies[i];
                         if(movieId === movie.id){
-                                model.likedmovies.splice(i,1);
+                            return model.likedmovies.splice(i,1);
                         }
                     }
 

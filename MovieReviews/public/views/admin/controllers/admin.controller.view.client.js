@@ -110,12 +110,12 @@
             UserService
                 .deleteMovie(movieId,model.registereduser)
                 .then(function (response) {
-                    UserService
-                        .getMoviesFromWatchList(model.registereduser)
-                        .then(function (movies) {
-                            if(movies.length>0)
-                                model.movies = movies;
-                        });
+                    for(m in model.movies) {
+                        var movie = model.movies[m];
+                        if (movie._id === movieId) {
+                            return model.movies.splice(m, 1);
+                        }
+                    }
                     // $location.url('/user/watchlist');
                 });
         }
@@ -124,13 +124,19 @@
             UserService
                 .unlikeMovie(movieId,model.registereduser)
                 .then(function (response) {
+                    for(m in model.likedmovies){
+                        var movie  = model.likedmovies[m];
+                        if(movie._id === movieId){
+                            return model.likedmovies.splice(m,1);
+                        }
+                    }
                     // console.log(response);
-                    UserService
-                        .getLikedMovies(model.registereduser)
-                        .then(function (movies) {
-                            if(movies.length>0)
-                                model.likedmovies = movies;
-                        });
+                    // UserService
+                    //     .getLikedMovies(model.registereduser)
+                    //     .then(function (movies) {
+                    //         if(movies.length>0)
+                    //             model.likedmovies = movies;
+                    //     });
                     // $location.url('/user/watchlist');
                 });
         }
@@ -234,19 +240,34 @@
             model.rating = rating;
         }
 
-        function editReview(reviewId,review) {
+        function editReview(reviewId,rating,text) {
+            var review = {
+                rating:rating,
+                text:text
+            };
             UserService
                 .editReview(reviewId, review)
                 .then(function (response) {
-                    getAllReviews();
+                    for(m in model.userreviews){
+                        if(model.userreviews[m]._id === reviewId){
+                            model.userreviews[m].text= typeof review.text==='undefined' ? model.userreviews[m].text :text ;
+                            model.userreviews[m].rating=typeof review.rating==='undefined'?model.userreviews[m].rating :rating ;
+                            break;
+                        }
+                    }
+                    model.selectedId = false;
                 })
         }
-        
+
         function deleteReview(userId,reviewId) {
             UserService
                 .deleteReview(userId,reviewId)
                 .then(function (response) {
-                    getAllReviews();
+                    UserService
+                        .getUserReviews(userId)
+                        .then(function (reviews) {
+                            model.userreviews = reviews;
+                        });
                 })
         }
 

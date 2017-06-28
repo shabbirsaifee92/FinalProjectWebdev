@@ -58,23 +58,13 @@
                                 </form>
                             </div>
 
-
-
-
-
-
-
-
-
-
-
                         </div>
 
                         <div class="profile-section row">
                             <h1 class="profile-section-header">Watchlist</h1>
 
 
-                            <div  ng-show="model.movies">
+                            <div  ng-show="model.movies.length>0">
                                 <div class="see-more">
                                     <h5><span><a ng-click="model.expandWatchlist()" data-toggle="collapse" href="#watchlist" target="_self" aria-expanded="false" aria-controls="watchlist">See all ></a></span></h5>
                                 </div>
@@ -103,43 +93,70 @@
                                     </div>
                                 </div>
                             </div>
-                            <div ng-hide="model.movies">
+                            <div ng-show="model.movies.length<=0">
                                 <p> watchlist is empty.</p>
                             </div>
                         </div>
 
                         <div class="profile-section row">
                             <h1 class="profile-section-header">Reviews</h1>
-                            <div class="see-more">
+                            <div ng-show = " model.userreviews.length>0" class="see-more">
                                 <h5><span><a data-toggle="collapse" href="#reviewList" target="_self" aria-expanded="false" aria-controls="reviewList">See all ></a></span></h5>
                             </div>
                             <div class="collapse" id="reviewList">
                                 <div ng-show="model.userreviews" ng-repeat="review in model.userreviews" class="subsection">
                                     <div class="panel panel-info">
                                         <div class="panel-heading"><h3>{{review.movieName}}</h3></div>
-                                        <div class="panel-body">
+                                        <div ng-hide="model.selectedId === review._id && model.selectedId" class="panel-body">
                                             <div class="star-ratings-css">
-                                                <div class="star-ratings-css-top" ng-model="rating" ng-style="{'width':{{review.rating}}*(100/5)}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                                <div class="star-ratings-css-top" ng-model="rating" ng-style="{'width':review.rating*(100/5)}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                                                 <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                                             </div>
                                             <div style="align-content: center">{{review.text}}</div>
                                             <div style="align-content: center">Posted On: {{review.posted | date:'fullDate'}}</div>
+                                            <a ng-click="model.selectReview(review._id,review.text);editingId=review._id" class="btn unfollow-btn btn-info">Edit</a>
+                                            <a ng-click="model.deleteReview(review.userId,review._id)" class="btn unfollow-btn btn-danger ">Delete</a>
+
+                                        </div>
+                                        <div ng-show="model.selectedId === review._id ">
+                                            <div ng-show="model.error" class="alert alert-danger">{{model.error}}</div>
+                                            <div class="stars">
+                                                <form action="">
+
+                                                    <label>Your Rating:</label>
+                                                    <br/>
+
+                                                    <input ng-model="model.rating" class="star star-5" id="stars-{{$index}}5" type="radio" name="star2" ng-value="'5'"/>
+                                                    <label class="star star-5" for="stars-{{$index}}5"></label>
+
+                                                    <input ng-model="model.rating" class="star star-4" id="stars-{{$index}}4" type="radio" name="star2" ng-value="'4'"/>
+                                                    <label class="star star-4" for="stars-{{$index}}4"></label>
+
+                                                    <input ng-model="model.rating" class="star star-3" id="stars-{{$index}}3" type="radio" name="star2" ng-value="'3'"/>
+                                                    <label class="star star-3" for="stars-{{$index}}3"></label>
+
+                                                    <input ng-model="model.rating" class="star star-2" id="stars-{{$index}}2" type="radio" name="star2" ng-value="'2'"/>
+                                                    <label class="star star-2" for="stars-{{$index}}2"></label>
+
+                                                    <input ng-model="model.rating" class="star star-1" id="stars-{{$index}}1" type="radio" name="star2" ng-value="'1'"/>
+                                                    <label class="star star-1" for="stars-{{$index}}1"></label>
+
+                                                    <label for="review2">Your Review:</label>
+                                                    <textarea id="review2" class="form-control" rows="4" ng-model="model.text2" style="resize: vertical;"></textarea>
+
+                                                    <a  ng-click="model.editReview(review._id,model.rating,model.text2)" class="btn unfollow-btn btn-success">Update</a>
+                                                    <a ng-click="model.cancel()" class="btn unfollow-btn btn-primary ">Cancel</a>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                    <!--<div class="panel-default">{{review.movieName}}</div>-->
-                                    <!--<div class="star-ratings-css">-->
-                                    <!--<div class="star-ratings-css-top" ng-model="rating" ng-style="{'width':{{review.rating}}*(100/5)}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>-->
-                                    <!--<div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>-->
-                                    <!--</div>-->
-                                    <!--<div style="align-content: center">{{review.text}}</div>-->
-                                    <!--<div style="align-content: center">Posted On: {{review.posted | date:'fullDate'}}</div>-->
-
-                                </div></div>
+                                </div>
+                            </div>
                         </div>
 
 
-                        <div ng-hide="model.userreviews">
-                            <h1 style="text-align: center" > Your have not posted any review</h1>
+                        <div ng-show="model.userreviews.length<=0">
+                            <p style="text-align: center" > Your have not posted any review</p>
                             <div style="align-content: center"><span class=""></span></div>
                             <h3 style="text-align: center"> Share your opinion</h3>
                         </div>
@@ -147,11 +164,18 @@
                         <div class="profile-section row">
                             <h1 class="profile-section-header">Likes</h1>
 
-                            <div class="see-more">
+
+                            <div ng-show="model.likedmovies.length<=0">
+                                <p style="text-align: center" >  likes are currently empty</p>
+                                <div style="align-content: center"><span class=""></span></div>
+                                <h3 style="text-align: center"> <a href="#/home">Explore</a> to get started</h3>
+                            </div>
+
+                            <div class="see-more" ng-show="model.likedmovies.length>0">
                                 <h5><span><a data-toggle="collapse" href="#likedMovieList" target="_self" aria-expanded="false" aria-controls="reviewList">See all ></a></span></h5>
                             </div>
 
-                         <div class="collapse" id="likedMovieList">
+                         <div ng-show="model.likedmovies.length>0" class="collapse" id="likedMovieList">
                              <div class="row subsection" ng-repeat="movie in model.likedmovies">
                                 <div class="col-sm-4 hidden-xs">
                                     <img src="{{movie.poster_path}}"/>
@@ -175,22 +199,16 @@
 
                             </div>
                          </div>
-                            <div ng-hide="model.likedmovies">
-                                <h1 style="text-align: center" > Your likes are currently empty</h1>
-                                <div style="align-content: center"><span class=""></span></div>
-                                <h3 style="text-align: center"> <a href="#/home">Explore</a> to get started</h3>
-                            </div>
                         </div>
 
                         <div class="profile-section row">
                             <h1 class="profile-section-header">People followed By user</h1>
-                            <div  ng-show="model.editUser.following.length >0">
+                            <div ng-show="model.editUser.following.length>0">
                                 <div class="see-more">
                                     <h5><span><a data-toggle="collapse" href="#followingList" target="_self" aria-expanded="false" aria-controls="watchlist">See all ></a></span></h5>
                                 </div>
                             </div>
                             <div class="collapse" id="followingList">
-                                {{model.editUser.following}}
                                 <div class="row profile-sub-section" ng-repeat="following in model.editUser.following">
 
 
@@ -213,104 +231,13 @@
                                         </div>
                                     </div>
 
-                                    <!--<div class="col-xs-4 col-sm-3 profile ">-->
-                                        <!--<object data="{{following.url}}" width=200 height=200>-->
-                                            <!--<img src="../../../images/profile.png" alt="Just testing.">-->
-                                        <!--</object>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-xs-8 col-sm-9 ">-->
-                                        <!--<h3> {{following.username}} </h3>-->
-                                        <!--<div ng-show="model.user._id">-->
-
-                                            <!--<a class="btn unfollow-btn btn-danger"-->
-                                               <!--ng-click="model.unfollow(following._id)">Unfollow</a>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-
                                 </div>
                             </div>
-
-
-
-                        <!--<div ng-show="model.userreviews" class="profile-section">-->
-                            <!--<h1 class="profile-section-header">You reviewed {{model.userreviews.length}} movies</h1>-->
-                            <!--<p>See all your reviews <a href="#!/user/user_reviews">here</a></p>-->
-                        <!--</div>-->
-
-                        <!--<div ng-hide="model.userreviews" class="profile-section">-->
-                            <!--<h1 class="profile-section-header">Your Reviews</h1>-->
-                            <!--<p>Loved or hated a movie or TV show? Write a review and share it with others!</p>-->
-                        <!--</div>-->
-
-
-                        <!--<div class="profile-section">-->
-                            <!--<h1 class="profile-section-header">Your Likes</h1>-->
-                            <!--<div  ng-show="model.likedmovies">-->
-                                <!--<p>You liked-->
-                                    <!--<a href="#!/movie/{{model.likedmovies[0].id}}">-->
-                                        <!--<span style="color: #b92c28">{{model.likedmovies[0].title}}</span>-->
-                                    <!--</a>-->
-                                    <!--<span ng-show="model.likedmovies.length>1">-->
-                                    <!--and-->
-                                    <!--<a href="#!/user/likedmovies" style="color: #b92c28">{{model.likedmovies.length-1}}</a> more-->
-                                    <!--</span>-->
-                                <!--</p>-->
-                            <!--</div>-->
-                            <!--<div ng-hide="model.likedmovies">-->
-                                <!--<p>Like a movie to see your movie preferences!!!</p>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                         <!---->
-                        <!--<div class="profile profile-section">-->
-                            <!--<h1 class="profile-section-header">Your Followers</h1>-->
-                             <!--<div ng-show="model.user.followers" class="row image-list">-->
-
-                                     <!--<div ng-repeat="follower in model.user.followers|limitTo:3" class="col-sm-4 col-xs-12">-->
-
-                                         <!--<figure>-->
-                                             <!--&lt;!&ndash;<object data="{{follower.url}}" width=200 height=200>&ndash;&gt;-->
-
-                                                 <!--<img onerror="this.src='../../../images/profile.png;'" style="width:120px;height:145px" ng-src="{{follower.url}}">-->
-                                             <!--&lt;!&ndash;</object>&ndash;&gt;-->
-                                             <!--<figcaption class="user-name-caption"><a ng-click="model.gotoFollower(follower._id)"><h4>{{follower.username}}</h4></a></figcaption>-->
-                                         <!--</figure>-->
-
-                                     <!--</div>-->
-                             <!--</div>-->
-                             <!--<div class="see-more" ng-show="model.user.followers">-->
-                                 <!--<h5><span><a href="#!/user/followers">See all >></a></span></h5>-->
-                             <!--</div>-->
-
-
-
-                             <!--<div ng-hide="model.user.followers">-->
-                                 <!--<p>Currently tou don't have any followers.</p>-->
-                             <!--</div>-->
-                        <!--</div>-->
-
-                        <!--<div class="profile profile-section">-->
-                            <!--<h1 class="profile-section-header">People You Follow</h1>-->
-                            <!--<div ng-show="model.user.following" class="row image-list">-->
-
-                                <!--<div ng-repeat="following in model.user.following|limitTo:3" class="col-sm-4 col-xs-12">-->
-
-                                    <!--<figure>-->
-                                            <!--<img onerror="this.src='../../../images/profile.png;'" style="width:120px;height:145px" ng-src="{{following.url}}">-->
-                                        <!--<figcaption class="user-name-caption"><a ng-click="model.gotoFollowingPerson(following._id)" ><h4>{{following.username}}asdadsadsasdsadasdasdasdasdadas</h4></a></figcaption>-->
-                                    <!--</figure>-->
-
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="see-more" ng-show="model.user.following.length !==0">-->
-                                <!--<h5><span><a href="#!/user/following">See all >></a></span></h5>-->
-                            <!--</div>-->
-
-
-
-                            <!--<div ng-hide="model.user.following.length!==0">-->
-                                <!--<p>Currently tou don't have any followers.</p>-->
-                            <!--</div>-->
-                        <!--</div>-->
+                            <div ng-show="model.editUser.following.length<=0">
+                                <p style="text-align: center" > You don't have any followers yet!!</p>
+                                <div style="align-content: center"><span class=""></span></div>
+                                <h3 style="text-align: center"> <a href="#/home">Explore</a> to get started</h3>
+                            </div>
                     </div>
 
 
