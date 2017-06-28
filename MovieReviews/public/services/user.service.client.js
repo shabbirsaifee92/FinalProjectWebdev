@@ -149,10 +149,13 @@
             }
 
             function deleteMovie(movieId,userId) {
+                // app.delete('/api/project/deleteMoviesFromWatchList/:movieId/user/:userId',deleteMoviesFromWatchList);
                 var url = "/api/project/deleteMoviesFromWatchList/"+movieId+"/user/"+userId;
                 return $http.delete(url)
                     .then(function (response) {
                         return response.data;
+                    },function (err) {
+                        console.log(err);
                     });
             }
 
@@ -218,6 +221,8 @@
                 return $http.delete(url)
                     .then(function (response) {
                         return response.data;
+                    },function (err) {
+                        // console.log('err');
                     });
             }
             function uploadProfileImage() {
