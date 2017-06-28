@@ -15,13 +15,14 @@
         model.submitReview = submitReview;
         model.cancel = cancel;
         model.selectReview = selectReview;
-        model.user = model.isLoggedIn = isLoggedIn;
+        // model.user = model.isLoggedIn = isLoggedIn;
         model.deleteMovieFromWatchlist = deleteMovieFromWatchlist;
         model.deleteLikedMovie =  deleteLikedMovie;
         model.unfollow=unfollow;
         model.findUserById = findUserById;
         model.logout=logout;
         model.checkPassword = checkPassword;
+        model.updateUser=updateUser;
         model.curUrl = $location.path();
 
         function init() {
@@ -277,6 +278,15 @@
                 .logout()
                 .then(function () {
                     $location.url('/login');
+                });
+        }
+
+
+        function updateUser() {
+            UserService
+                .updateUser(model.editUser._id,model.editUser)
+                .then(function (status) {
+                    model.updateSuccess='Profile Updated';
                 });
         }
 

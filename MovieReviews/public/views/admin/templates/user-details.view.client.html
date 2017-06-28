@@ -29,7 +29,7 @@
                             </div>
 
                             <div class="collapse" id="personalInfo">
-                                <div ng-show="model.message" class="alert alert-danger"><h3> {{model.message}}</h3></div>
+                                <div ng-show="model.updateSuccess" class="alert alert-success"><h3> {{model.updateSuccess}}</h3></div>
                                 <form class="form-horizontal info-form" action="#">
                                     <label for="txtUsername">Username</label>
                                     <input ng-disabled="true" ng-model="model.editUser.username" id="txtUsername" class="form-control" type="text" placeholder="user name" >
@@ -44,10 +44,10 @@
                                     <input ng-model="model.editUser.lastName" id="txtLastname" class="form-control" type="text" placeholder="Last Name">
 
                                     <label for="selectRole">User Role</label>
-                                    <select style="margin-bottom: 5px;" id="selectRole" class="form-control" ng-model="model.attribute" name="attr" >
-                                            <option ng-selected="model.attribute == 'user'" value='user' >user</option>
-                                            <option ng-selected="model.attribute == 'admin'" value='popularity'>admin</option>
-                                            <option ng-selected="model.attribute == 'critic'" value='release_date'>critic</option>
+                                    <select style="margin-bottom: 5px;" id="selectRole" class="form-control" ng-model="model.editUser.role" name="attr" >
+                                            <option ng-selected="model.editUser.role == 'user'" value='user' >user</option>
+                                            <option ng-selected="model.editUser.role == 'admin'" value='popularity'>admin</option>
+                                            <option ng-selected="model.editUser.role == 'critic'" value='release_date'>critic</option>
                                         </select>
 
 
