@@ -96,9 +96,9 @@
                                         {{genre.name}}<span ng-show=" ! $last ">,</span>
                                         </span>
                                             </div>
-                                            <div class="unfollow-btn-div"> <button class="btn unfollow-btn btn-danger" ng-click="model.deleteMovie(movie.id)">
+                                            <div class="unfollow-btn-div"> <a class="btn unfollow-btn btn-danger" ng-click="model.deleteMovieFromWatchlist(movie.id)">
                                                 Delete
-                                            </button></div>
+                                            </a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -167,9 +167,9 @@
                 {{genre.name}}<span ng-show=" ! $last ">,</span>
                 </span>
                                     </div>
-                                    <button class="btn unfollow-btn btn-danger " ng-click="model.deleteLikedMovie(movie.id )">
+                                    <a class="btn unfollow-btn btn-danger " ng-click="model.deleteLikedMovie(movie.id )">
                                         Delete
-                                    </button>
+                                    </a>
                                 </div>
 
 

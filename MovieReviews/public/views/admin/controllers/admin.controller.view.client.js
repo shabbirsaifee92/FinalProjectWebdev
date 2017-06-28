@@ -78,7 +78,7 @@
                             model.movies = movies;
                     });
 
-               
+
             }
 
 
